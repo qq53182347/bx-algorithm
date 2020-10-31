@@ -41,8 +41,25 @@ public class Test139 {
         List<String> wordDict = new ArrayList<>();
         wordDict.add("leet");
         wordDict.add("code");
-        System.out.println(wordBreak2("leetcode",wordDict));
+        System.out.println(wordBreak3("leetcode",wordDict));
     }
+
+    public static boolean wordBreak3(String s, List<String> wordDict) {
+        boolean []  bo= new boolean[s.length()+1];
+        bo[0]=true;
+        for (int i = 1; i < bo.length; i++) {
+            for (int j = i-1; j >=0 ; j--) {
+                bo[i] = bo[j]&&wordDict.contains(s.substring(j,i));
+                if(bo[i]){
+                    break;
+                }
+            }
+        }
+        return  bo[s.length()];
+    }
+
+
+
 
     public static boolean wordBreak2(String s, List<String> wordDict) {
         boolean[] dp=new boolean[s.length()+1];
